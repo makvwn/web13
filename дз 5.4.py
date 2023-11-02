@@ -1,14 +1,13 @@
-# Чтение фамилий школьников, решивших задачи по разным предметам
-algebra_students = set(input().split())
-geometry_students = set(input().split())
-trigonometry_students = set(input().split())
+algebra = "Смирнов Сидоров Попов"
+geometry = "Смирнов Сидоров Попов"
+trigonometry = "Смирнов Сидоров Попов"
 
-# Находим пересечение множеств школьников, которые решили все задачи
-students_solved_all = algebra_students & geometry_students & trigonometry_students
-
-# Выводим фамилии учащихся, решивших все задачи, в алфавитном порядке через пробел
-if students_solved_all:
-    sorted_students = sorted(students_solved_all)
-    print(" ".join(sorted_students))
-else:
-    print("Все три задачи никто не решил")
+algebra = input().split()
+geometry = input().split()
+trigonometry = input().split()
+allSolved = set(algebra) & set(geometry) & set(trigonometry)
+for i in allSolved:
+    print(i)
+    print(" ")
+if len(allSolved) == 0:
+    print('Никто не решил все три задачи')
