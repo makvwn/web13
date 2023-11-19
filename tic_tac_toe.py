@@ -1,14 +1,12 @@
-board = {
-    1: ' ', 2: ' ', 3: ' ',
-    4: ' ', 5: ' ', 6: ' ',
-    7: ' ', 8: ' ', 9: ' '
-}
+board = ["1", "2", "3",
+        "4", "5", "6",
+        "7", "8", "9"]
 def printBoard():
-   print(board[1] + '|'+ board[2]+'|'+board[3])
+   print(board[0] + '|'+ board[1]+'|'+ board[2])
    print('-----')
-   print(board[4] + '|'+board[5]+'|' + board[6])
+   print(board[3] + '|'+board[4]+'|' + board[5])
    print('-----')
-   print(board[7] + '|'+board[8]+'|' + board[9])
+   print(board[6] + '|'+board[7]+'|' + board[8])
    return
 
 victories = [[0,1,2],
@@ -20,32 +18,16 @@ victories = [[0,1,2],
              [0,4,8],
              [2,4,6]]
  
-def print_maps():
-    print(maps[0], end = " ")
-    print(maps[1], end = " ")
-    print(maps[2])
+def stepBoard(step,symbol):
+    board[step - 1] = symbol
  
-    print(maps[3], end = " ")
-    print(maps[4], end = " ")
-    print(maps[5])
- 
-    print(maps[6], end = " ")
-    print(maps[7], end = " ")
-    print(maps[8])    
- 
-def step_maps(step,symbol):
-    ind = maps.index(step)
-    maps[ind] = symbol
- 
-def get_result():
+def getResult():
     win = ""
- 
     for i in victories:
-        if maps[i[0]] == "X" and maps[i[1]] == "X" and maps[i[2]] == "X":
+        if board[i[0]] == "X" and board[i[1]] == "X" and board[i[2]] == "X":
             win = "X"
-        if maps[i[0]] == "O" and maps[i[1]] == "O" and maps[i[2]] == "O":
+        if board[i[0]] == "O" and board[i[1]] == "O" and board[i[2]] == "O":
             win = "O"   
-             
     return win
  
 game_over = False
@@ -53,7 +35,7 @@ player1 = True
  
 while game_over == False:
  
-    print_maps()
+    printBoard()
  
     if player1 == True:
         symbol = "X"
@@ -62,8 +44,8 @@ while game_over == False:
         symbol = "O"
         step = int(input("Человек 2, ваш ход: "))
  
-    step_maps(step,symbol) 
-    win = get_result() 
+    stepBoard(step,symbol) 
+    win = getResult() 
     if win != "":
         game_over = True
     else:
@@ -71,5 +53,5 @@ while game_over == False:
  
     player1 = not(player1)        
          
-print_maps()
+printBoard()
 print("Победил", win)
